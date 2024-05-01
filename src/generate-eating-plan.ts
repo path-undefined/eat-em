@@ -2,14 +2,14 @@ import { Recipe, isSingleIngredient } from "./recipe";
 
 export function generateEatingPlan(args: string[], recipes: Recipe[]) {
   const existingIngredients = args;
-  const weightMap: Array<{name: string, weight: number}> = [];
+  const weightMap: Array<{ name: string; weight: number }> = [];
 
   for (const recipe of recipes) {
     let weight = 1;
-    
+
     recipe.ingredients.flat().forEach((ingredient) => {
       if (existingIngredients.includes(ingredient)) {
-        weight ++;
+        weight++;
       }
     });
 
@@ -24,7 +24,7 @@ export function generateEatingPlan(args: string[], recipes: Recipe[]) {
     let currentWeight = 0;
     while (currentWeight <= randomNumber) {
       currentWeight += weightMap[index].weight;
-      index ++;
+      index++;
     }
     const recipeRecord = weightMap[index - 1];
     weightMap.splice(index - 1, 1);
